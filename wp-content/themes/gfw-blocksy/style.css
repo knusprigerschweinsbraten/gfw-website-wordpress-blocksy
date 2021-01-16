@@ -1,0 +1,226 @@
+/*
+ Theme Name:          GFW Blocksy Child
+ Theme URI:           https://creativethemes.com/blocksy/
+ Description:         This is just a very lightweight child theme of the very famous Blocksy WordPress theme. Since I am not
+                      really a UI expert I created this child theme because of some Google research. Maybe it is a good approach,
+                      maybe not. Not sure if I am missing here something in terms of licensing or anything else. Please bear
+                      with me. :-)
+ Author:              GFW Pachler
+ Author URI:          www.gfwpachler.at
+ Template:            blocksy
+ Version:             1.0.0
+ License:             Apache License 2.0
+ License URI:         https://www.apache.org/licenses/LICENSE-2.0
+ Background Pattern:  The used Background is provided by Toptal Subtle Patterns.
+*/
+ul.gfw-no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+li.gfw-margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.wps-form {
+  width: 100%;
+  margin: 0 auto;
+}
+.wps-form-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.wps-form-row {
+  width: 100%;
+}
+.wps-form-column {
+  flex: 1;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+@media only screen and ( min-width: 48em ) { 
+  .wps-form-row {
+      flex-direction: row;
+  }
+  .wps-form-column {
+      padding: 0.5rem 1rem 0 0;
+  }
+}
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="date"],
+.wpcf7 input[type="number"],
+.wpcf7 input[type="tel"] {
+  border-style: solid;
+  border-width: 2.5px;
+  border-color: #f3f3f3;
+  border-radius: 2.5px;
+  background-color: #f3f3f3;
+  padding: 20px 10px 20px 10px;
+}
+.wpcf7 textarea {
+  border-style: solid;
+  border-width: 2.5px;
+  border-color: #f3f3f3;
+  border-radius: 2.5px;
+  background-color: #f3f3f3;
+  padding: 10px 10px 10px 10px;
+}
+.wpcf7 input[type="text"]:focus,
+.wpcf7 input[type="email"]:focus,
+.wpcf7 input[type="date"]:focus,
+.wpcf7 input[type="number"]:focus,
+.wpcf7 input[type="tel"]:focus,
+.wpcf7 textarea:focus {
+  border-color: #53900f;
+}
+.wpcf7-submit {
+  border-style: solid !important;
+  border-color: #53900f !important;
+  border-radius: 2.5px !important;
+  background-color: #53900f !important;
+  padding: 5px 10px 5px 10px !important;
+  margin: 40px 0 0 0 !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+}
+.wpcf7-submit:hover {
+  border-style: solid !important;
+  border-color: #53900f !important;
+  border-radius: 2.5px !important;
+  background-color: #53900f !important;
+  padding: 5px 10px 5px 10px !important;
+  margin: 40px 0 0 0 !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+}
+.wpcf7 input[type="text"].wpcf7-not-valid,
+.wpcf7 input[type="email"].wpcf7-not-valid,
+.wpcf7 input[type="date"].wpcf7-not-valid,
+.wpcf7 input[type="number"].wpcf7-not-valid,
+.wpcf7 input[type="tel"].wpcf7-not-valid,
+.wpcf7 textarea.wpcf7-not-valid {
+  border-color: #cc0000;
+  border-radius: 2.5px;
+}
+.wpcf7 form.init .wpcf7-response-output {
+  display: none;
+}
+.wpcf7 form.sent .wpcf7-response-output {
+  border-color: rgba(83,144,15, 0.7);
+  background-color: rgba(83,144,15, 0.7);
+  border-radius: 2.5px;
+  margin: 20px 0 20px 0;
+  color: #FFFFFF;
+}
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output,
+.wpcf7 form.spam .wpcf7-response-output {
+  border-color: rgba(218, 0, 28, 0.7);
+  background-color: rgba(218, 0, 28, 0.7);
+  border-radius: 2.5px;
+  margin: 20px 0 20px 0;
+  color: #FFFFFF;
+}
+.gfw-required-field {
+  color:rgba(218, 0, 28, 0.7);
+}
+.hero-section div.ct-image-container,
+.gfw-single-project-page-header-background-overflow {
+  background-image: url(https://www.gfwpachler.at/wp-content/uploads/2020/12/gfw_background-pattern_gplaypattern.png) !important;
+  opacity: 1 !important;
+  mix-blend-mode: multiply !important;
+  transition: background 0.3s, border-radius 0.3s, opacity 0.3s !important;
+}
+.hero-section h2.page-title {
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  padding: 30px 370px 170px 0;
+}
+section.gfw-single-project-page-header {
+  background-color: #53900f;
+  height: 120px;
+}
+.gfw-single-project-page-header-background-overflow {
+  height: 120px;
+}
+p.woocommerce-mini-cart__buttons a.button {
+  background-color: #1f6521;
+}
+.woocommerce-cart-form__cart-item .ct-increase,
+.woocommerce-cart-form__cart-item .ct-decrease {
+  color: #505050 !important;
+}
+.cart_totals .wcz-bts-btn,
+.cart_totals .wcz-bts-btn:hover {
+  margin: 15px 0 0 0 !important;
+  border-color: #53900f !important;
+  border-radius: 2.5px;
+  border: solid 2px;
+  width: 100%
+}
+.woocommerce .cart-empty,
+.woocommerce .woocommerce-message,
+.woocommerce .woocommerce-info {
+  display:none !important;
+}
+.product_meta .wcz-continue,
+.product_meta .wcz-continue:hover {
+  border-color: #53900f !important;
+  border-radius: 2.5px;
+  border: solid 2px;
+  width: 100%
+}
+.woocommerce input[type="radio"] {
+  border-color: #505050 !important;
+}
+.woocommerce input[type="radio"]:checked {
+  border-color: #505050 !important;
+  background-color: #505050 !important;;
+}
+.woocommerce input[type="checkbox"] {
+  border-color: #505050 !important;
+}
+.woocommerce input[type="checkbox"]:checked {
+  border-color: #505050 !important;
+  background-color: #505050 !important;
+}
+#ship-to-different-address-checkbox {
+  border-color: #505050 !important;
+}
+#ship-to-different-address-checkbox:checked {
+  border-color: #505050 !important;
+  background-color: #505050 !important;
+}
+.woocommerce .woocommerce-error:before {
+  display:none !important;
+}
+a.gfw-form-gdpr-linkage {
+  color: #505050;
+  text-decoration: underline !important;
+}
+.woocommerce .woocommerce-order-details .product-name a,
+.woocommerce a.shipping-calculator-button,
+.woocommerce a.woocommerce-terms-and-conditions-link,
+.woocommerce a.gfw-form-gdpr-linkage {
+  color: #505050;
+  text-decoration: underline !important;
+}
+.woocommerce .woocommerce-privacy-policy-text {
+  margin-bottom: 20px;
+}
+ul#select2-calc_shipping_country-results li {
+  color: #505050;
+}
+ul#select2-calc_shipping_country-results li:hover {
+  background-color: #b4d5fe;
+}
+.woocommerce-shipping-totals button[name="calc_shipping"]:hover, 
+.woocommerce-shipping-totals button[name="calc_shipping"] {
+  color: #505050;
+  background-color: #f3f3f3;
+}
+.grecaptcha-badge { 
+  visibility: hidden; 
+}
