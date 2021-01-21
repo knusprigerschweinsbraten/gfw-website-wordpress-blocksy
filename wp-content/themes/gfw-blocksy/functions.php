@@ -48,12 +48,14 @@ function woocommerce_check_cart_quantities() {
   
         if (in_array ( '12er Pakete', $product_categories )) {
             $total_products += 12;
+        } elseif (in_array ( '6er Pakete', $product_categories )) {
+            $total_products += 6;    
         } else {
             $total_products += $values['quantity'];
         }
     }
-    if ($total_products < 12) {
-        wc_add_notice( sprintf( __('Die Mindestbestellmenge liegt bei 12 Flaschen. Sie haben aktuell %s Flaschen im Einkaufswagen. Bitte beachten Sie auch, dass der Versand ausschließlich in 6er Kartons erfolgt. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 6 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen.', 'woocommerce'), $total_products ), 'error' );
+    if ($total_products < 6) {
+        wc_add_notice( sprintf( __('Die Mindestbestellmenge liegt bei 6 Flaschen. Sie haben aktuell %s Flaschen im Einkaufswagen. Bitte beachten Sie auch, dass der Versand ausschließlich in 6er Kartons erfolgt. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 6 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen.', 'woocommerce'), $total_products ), 'error' );
     } elseif (($total_products % $multiples) > 0) {
         wc_add_notice( sprintf( __('Der Versand erfolgt ausschließlich in 6er Kartons. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 6 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen. Sie haben aktuell %s Flaschen im Einkaufswagen.', 'woocommerce'), $total_products ), 'error' );
     }
@@ -75,11 +77,13 @@ function disable_checkout_button_wrong_quantity() {
   
         if (in_array ( '12er Pakete', $product_categories )) {
             $total_products += 12;
+        } elseif (in_array ('6er Pakete', $product_categories)) {
+            $total_products += 6;
         } else {
             $total_products += $values['quantity'];
         }
     }
-    if ($total_products < 12) {
+    if ($total_products < 6) {
         remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
     } elseif (($total_products % $multiples) > 0) {
         remove_action( 'woocommerce_proceed_to_checkout', 'woocommerce_button_proceed_to_checkout', 20 );
