@@ -224,3 +224,6 @@ ul#select2-calc_shipping_country-results li:hover {
 .grecaptcha-badge { 
   visibility: hidden; 
 }
+div.cmplz-links.cmplz-documents a.cmplz-link.cookie-statement {
+  display: none;
+}

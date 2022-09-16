@@ -10,11 +10,13 @@
 if (! defined('WP_DEBUG')) {
 	die( 'Direct access forbidden.' );
 }
+
 function enqueue_gfw_blocksy_theme_styles() {
     wp_enqueue_style('parent-style', get_template_directory_uri().'/style.css');
     wp_enqueue_style('child-theme-css', get_stylesheet_directory_uri().'/style.css', array('parent-style'));
 }
 add_action('wp_enqueue_scripts', 'enqueue_gfw_blocksy_theme_styles');
+
 function gfw_add_navigation_bar_background_on_single_prodcut_page() {
     if(function_exists('is_product') && is_product()) {
         echo '
@@ -33,8 +35,9 @@ function gfw_add_navigation_bar_background_on_single_prodcut_page() {
         }
 }
 add_action('woocommerce_before_main_content', 'gfw_add_navigation_bar_background_on_single_prodcut_page', 10, 2);
+
 function woocommerce_check_cart_quantities() {
-    $multiples = 6;
+    $multiples = 12;
     $total_products = 0;
     
     foreach (WC()->cart->get_cart() as $cart_item_key => $values) {
@@ -55,15 +58,15 @@ function woocommerce_check_cart_quantities() {
         }
     }
     if ($total_products < 12) {
-        wc_add_notice( sprintf( __('Die Mindestbestellmenge liegt bei 12 Flaschen. Sie haben aktuell %s Flaschen im Einkaufswagen. Bitte beachten Sie auch, dass der Versand entweder in 6er oder 12er Kartons erfolgt. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 6 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen.', 'woocommerce'), $total_products ), 'error' );
+        wc_add_notice( sprintf( __('Die Mindestbestellmenge liegt bei 12 Flaschen. Sie haben aktuell %s Flaschen im Einkaufswagen. Bitte beachten Sie auch, dass der Versand ausschließlich 12er Kartons erfolgt. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 12 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen.', 'woocommerce'), $total_products ), 'error' );
     } elseif (($total_products % $multiples) > 0) {
-        wc_add_notice( sprintf( __('Der Versand erfolgt entweder in 6er oder 12er Kartons. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 6 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen. Sie haben aktuell %s Flaschen im Einkaufswagen.', 'woocommerce'), $total_products ), 'error' );
+        wc_add_notice( sprintf( __('Der Versand erfolgt ausschließlich in 12er Kartons. Entsprechend dessen muss die Anzahl der bestellten Flaschen durch 12 teilbar sein. Sie können aber natürlich gerne verschiedene Weine bestellen. Sie haben aktuell %s Flaschen im Einkaufswagen.', 'woocommerce'), $total_products ), 'error' );
     }
 }
 add_action('woocommerce_check_cart_items', 'woocommerce_check_cart_quantities');
 
 function disable_checkout_button_wrong_quantity() {
-    $multiples = 6;
+    $multiples = 12;
     $total_products = 0;
     
     foreach (WC()->cart->get_cart() as $cart_item_key => $values) {
@@ -90,3 +93,50 @@ function disable_checkout_button_wrong_quantity() {
     }
 }
 add_action( 'woocommerce_proceed_to_checkout', 'disable_checkout_button_wrong_quantity', 1 );
+
+/**
+ * Show the banner when a html element with class 'cmplz-show-banner' is clicked
+ * Copied from https://complianz.io/add-a-link-to-show-the-cookie-banner/.
+ */
+function cmplz_show_banner_on_click() {
+	?>
+	<script>
+        function addEvent(event, selector, callback, context) {
+            document.addEventListener(event, e => {
+                if ( e.target.closest(selector) ) {
+                    callback(e);
+                }
+            });
+        }
+        addEvent('click', '.cmplz-show-banner', function() {
+            document.querySelectorAll('.cmplz-manage-consent').forEach(obj => {
+                obj.click();
+            });
+        });
+	</script>
+	<?php
+}
+add_action( 'wp_footer', 'cmplz_show_banner_on_click' );
+
+function contact_form_7_cookie_consent() {
+    ?>
+    <script>
+        function addEvent(event, selector, callback, context) {
+            document.addEventListener(event, e => {
+                if ( e.target.closest(selector) ) {
+                    callback(e);
+                }
+            });
+        }
+        addEvent('click', 'input[type=checkbox][name=gfw-gdpr]', function(e) {
+            console.log("BAL");
+
+            cmplz_accept_all();
+            cmplz_set_banner_status("dismissed");
+            cmplz_fire_categories_event();
+            cmplz_track_status();
+        });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'contact_form_7_cookie_consent' );
